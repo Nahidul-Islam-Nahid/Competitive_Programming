@@ -3,9 +3,9 @@
 Welcome to my competitive programming repository! This space is dedicated to my daily problem-solving practice and contest participation. I primarily use **C++** to solve problems focusing on Data Structures and Algorithms.
 
 ## 📊 Programming Profiles
-- **Codeforces:** [Nahidul-Islam-Nahid](https://codeforces.com/profile/Logiclesss)
-- **Codechef:** [Your_Username](https://www.codechef.com/users/nahid_islam)
-- **LeetCode:** [Your_Username](https://leetcode.com/u/Nahidul_Islam_Nahid/)
+- **Codeforces:** [Nahidul Islam](https://codeforces.com/profile/Logiclesss)
+- **Codechef:** [Nahidul Islam](https://www.codechef.com/users/nahid_islam)
+- **LeetCode:** [Nahidul Islam](https://leetcode.com/u/Nahidul_Islam_Nahid/)
 
 ## 📂 Repository Structure
 The solutions are organized into folders based on the platform:
