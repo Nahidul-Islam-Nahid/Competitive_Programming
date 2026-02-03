@@ -19,6 +19,11 @@ The solutions are organized into folders based on the platform:
 - **Style:** Clean and efficient code without unnecessary comments.
 
 ## 📈 GitHub Stats
-![My GitHub Stats](https://github-readme-stats.vercel.app/api?username=Nahidul-Islam-Nahid&show_icons=true&theme=radical)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Nahidul-Islam-Nahid&layout=compact&theme=radical)
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api?username=Nahidul-Islam-Nahid&show_icons=true&theme=radical" alt="Nahidul's GitHub Stats" />
+</p>
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Nahidul-Islam-Nahid&layout=compact&theme=radical" alt="Top Langs" />
+</p>
+
 *Keep Coding, Keep Improving!*
