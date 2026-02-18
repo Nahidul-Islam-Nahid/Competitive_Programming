@@ -63,51 +63,31 @@ vector<string> split(const string &s, char delimiter)
 // count frequency of vector elements into map
 #define FREQQ(mp, v) for(auto &x : v) mp[x]++;
 
-void solve() 
+void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int cnt0 = 0, cnt1 = 0;
-    for(char c : s) 
+    int n;
+    cin >> n;
+    bool found = false;
+    vector<int> v(n);
+    for(int i=0; i<n; i++) 
     {
-        if(c == '0') cnt0++;
-        else cnt1++;
+        cin >> v[i];
+        if(v[i] == 67) found = true;
     }
-    int t_len = 0;
-    loop(i, n) 
-    {
-        if(s[i] == '0') 
-        {
-            if(cnt1 > 0) 
-            {
-                cnt1--;
-                t_len++;
-            } 
-            else break;
-        } 
-        else 
-        {
-            if(cnt0 > 0) 
-            {
-                cnt0--;
-                t_len++;
-            } 
-            else break;
-        }
-    }
-    cout << n - t_len << endl;
+    if(found) cout<<"YES"<< endl;
+    else cout <<"NO"<< endl;
 }
-
 // ------------------- Main Template -------------------
 int main()
 {
     fastio;
-    int t;
-    IN(t);
-    while(t--)
-    {
+
+     int t;
+     IN(t);
+     while(t--)
+     {
         solve();
-    }
+     }
+
     return 0;
 }

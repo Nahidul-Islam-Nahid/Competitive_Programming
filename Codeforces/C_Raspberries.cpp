@@ -63,40 +63,51 @@ vector<string> split(const string &s, char delimiter)
 // count frequency of vector elements into map
 #define FREQQ(mp, v) for(auto &x : v) mp[x]++;
 
-void solve() 
+void solve()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int cnt0 = 0, cnt1 = 0;
-    for(char c : s) 
+    int n, k;
+    IN2(n,k);
+    vector<int> a(n);
+    INV(a,n);
+
+    if(k==2)
     {
-        if(c == '0') cnt0++;
-        else cnt1++;
+        int ans=1;
+        for(int x:a)
+            if(x%2==0) ans=0;
+        print(ans);
     }
-    int t_len = 0;
-    loop(i, n) 
+    else if(k==3)
     {
-        if(s[i] == '0') 
+        int ans=2;
+        for(int x:a)
+            ans=min(ans,(3-x%3)%3);
+        print(ans);
+    }
+    else if(k==5)
+    {
+        int ans=4;
+        for(int x:a)
+            ans=min(ans,(5-x%5)%5);
+        print(ans);
+    }
+    else
+    {
+        int ans=3;
+
+        int cnt_even=0;
+        for(int x:a)
         {
-            if(cnt1 > 0) 
-            {
-                cnt1--;
-                t_len++;
-            } 
-            else break;
-        } 
-        else 
-        {
-            if(cnt0 > 0) 
-            {
-                cnt0--;
-                t_len++;
-            } 
-            else break;
+            if(x%2==0) cnt_even++;
+            ans=min(ans,(4-x%4)%4);
         }
+
+        if(cnt_even>=2) ans=0;
+        else if(cnt_even==1) ans=min(ans,1);
+        else ans=min(ans,2);
+
+        print(ans);
     }
-    cout << n - t_len << endl;
 }
 
 // ------------------- Main Template -------------------
@@ -109,5 +120,6 @@ int main()
     {
         solve();
     }
+
     return 0;
 }

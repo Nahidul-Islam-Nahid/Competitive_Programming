@@ -65,49 +65,46 @@ vector<string> split(const string &s, char delimiter)
 
 void solve() 
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int cnt0 = 0, cnt1 = 0;
-    for(char c : s) 
+    int t;
+    cin >> t;
+    while (t--) 
     {
-        if(c == '0') cnt0++;
-        else cnt1++;
-    }
-    int t_len = 0;
-    loop(i, n) 
-    {
-        if(s[i] == '0') 
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+
+        int maxBlock = 1;
+        int cur = 1;
+
+        for (int i = 1; i < n; i++) 
         {
-            if(cnt1 > 0) 
+            if (s[i] == s[i - 1]) 
             {
-                cnt1--;
-                t_len++;
-            } 
-            else break;
-        } 
-        else 
-        {
-            if(cnt0 > 0) 
+                cur++;
+            } else 
             {
-                cnt0--;
-                t_len++;
-            } 
-            else break;
+                maxBlock = max(maxBlock, cur);
+                cur = 1;
+            }
         }
+
+        maxBlock = max(maxBlock, cur);
+        cout << maxBlock + 1 << "\n";
     }
-    cout << n - t_len << endl;
 }
 
 // ------------------- Main Template -------------------
 int main()
 {
     fastio;
+
     int t;
     IN(t);
     while(t--)
     {
         solve();
     }
+
     return 0;
 }

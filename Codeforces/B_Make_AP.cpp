@@ -65,44 +65,31 @@ vector<string> split(const string &s, char delimiter)
 
 void solve() 
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    int cnt0 = 0, cnt1 = 0;
-    for(char c : s) 
+    long long a, b, c;
+    IN3(a, b, c);
+    if ((2*b - c) > 0 && (2*b - c) % a == 0) 
     {
-        if(c == '0') cnt0++;
-        else cnt1++;
+        cout << "YES\n";
+        return;
     }
-    int t_len = 0;
-    loop(i, n) 
+    if ((a + c) % (2*b) == 0) 
     {
-        if(s[i] == '0') 
-        {
-            if(cnt1 > 0) 
-            {
-                cnt1--;
-                t_len++;
-            } 
-            else break;
-        } 
-        else 
-        {
-            if(cnt0 > 0) 
-            {
-                cnt0--;
-                t_len++;
-            } 
-            else break;
-        }
+        cout << "YES\n";
+        return;
     }
-    cout << n - t_len << endl;
-}
+    if ((2*b - a) > 0 && (2*b - a) % c == 0) 
+    {
+        cout << "YES\n";
+        return;
+    }
 
+    cout << "NO\n";
+}
 // ------------------- Main Template -------------------
 int main()
 {
     fastio;
+
     int t;
     IN(t);
     while(t--)
