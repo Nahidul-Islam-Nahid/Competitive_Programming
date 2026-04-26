@@ -37,37 +37,29 @@ void solve()
 {
     int n;
     cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    vector<int> a(n);
+    for (auto &x : a) cin >> x;
+    if (n % 2 == 0) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
-    }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+        cout << 2 << '\n';
+        cout << 1 << " " << n << '\n';
+        cout << 1 << " " << n << '\n';
+    } 
+    else 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        cout << 4 << '\n';
+        cout << 1 << " " << n-1 << '\n';
+        cout << 1 << " " << n-1 << '\n';
+        cout << n-1 << " " << n << '\n';
+        cout << n-1 << " " << n << '\n';
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

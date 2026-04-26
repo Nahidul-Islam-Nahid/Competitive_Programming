@@ -37,32 +37,23 @@ void solve()
 {
     int n;
     cin >> n;
-    vi cnt(5, 0);
+    int a = 0, b = 0, c = 0, x;
     fr(n) 
     {
-        int x;
         cin >> x;
-        cnt[x]++;
+        a += x;
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    for (int i = 0; i < n - 1; i++) 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        cin >> x;
+        b += x;
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    for (int i = 0; i < n - 2; i++) 
+    {
+        cin >> x;
+        c += x;
+    }
+    cout << (a - b) << "\n" << (b - c) << endl;
 }
 
 int32_t main() 

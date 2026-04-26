@@ -33,41 +33,43 @@ typedef map<int,int> mii;
 
 int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
+const int LIMIT = 1000001;
+bool is_prime[LIMIT];
+
+void sieve() 
+{
+    fill(is_prime, is_prime + LIMIT, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int p = 2; p * p < LIMIT; p++) 
+    {
+        if (is_prime[p]) 
+        {
+            for (int i = p * p; i < LIMIT; i += p)
+                is_prime[i] = false;
+        }
+    }
+}
+
 void solve() 
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    int x;
+    cin >> x;
+    int root = round(sqrt(x));
+    if (x > 1 && root * root == x && is_prime[root]) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
-    }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+        yes;
+    } else 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        no;
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    sieve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

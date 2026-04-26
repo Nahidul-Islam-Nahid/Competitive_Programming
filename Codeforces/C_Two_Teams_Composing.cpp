@@ -37,37 +37,27 @@ void solve()
 {
     int n;
     cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    in(a,n)
+    map<int,int> mp;
+    for(auto x : a) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        mp[x]++;
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    int distinct = mp.size();
+    int mx = 0;
+    for(auto [k,v] : mp) 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        mx = max(mx, v);
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    int ans = max(min(distinct-1, mx), min(distinct, mx-1));
+    cout << ans << '\n';
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

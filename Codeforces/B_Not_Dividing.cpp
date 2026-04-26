@@ -18,7 +18,7 @@ const int MINN = -1e18;
 #define frr(i,a,b) for(int i = a; i < b; i++)
 #define rfrr(i,a,b) for(int i = a - 1; i >= b; i--)
 
-#define in(v,n) vi v(n); for(int i=0; i<n; i++) cin>>v[i];
+#define in(v,n) vector<int> v(n); for(int i=0; i<n; i++) cin>>v[i];
 #define out(v) do { for (auto x : v) cout << x << ' '; cout << '\n'; } while(0)
 #define yes cout<<"YES"<<'\n'
 #define no cout<<"NO"<<'\n'
@@ -35,39 +35,37 @@ int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
 void solve() 
 {
-    int n;
+    int n; 
     cin >> n;
-    vi cnt(5, 0);
+    vi a(n);
     fr(n) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        cin >> a[i];
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    fr(n)
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        if(a[i] == 1)
+        {
+            a[i] = 2;
+        }
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    for(int i = 1; i < n; i++)
+    {
+        while(a[i] % a[i - 1] == 0)
+        {
+            a[i]++;
+        }
+    }
+    out(a);
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
+
     return 0;
 }

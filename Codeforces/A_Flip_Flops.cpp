@@ -35,39 +35,42 @@ int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
 void solve() 
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    int n, c, k;
+    cin >> n >> c >> k;
+    vector<int> a(n);
+    for (auto &x : a) cin >> x;
+    sort(all(a));
+    
+    for (int i = 0; i < n; i++) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        if (a[i] <= c) 
+        {
+            c += a[i];  // kill for free
+        } 
+        else 
+        {
+            int need = a[i] - c;  // flip flops needed to reduce a[i] to c
+            if (need <= k) 
+            {
+                k -= need;
+                c += a[i] - need;  // gain reduced monster's power
+            } 
+            else 
+            {
+                break;
+            }
+        }
     }
 
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
-    {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
-    }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    cout << c << '\n';
 }
+
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

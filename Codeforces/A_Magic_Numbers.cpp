@@ -35,34 +35,30 @@ int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
 void solve() 
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    string s;
+    cin >> s;
+
+    for (int i = 0; i < s.size(); ) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        if (i + 2 < s.size() && s[i]=='1' && s[i+1]=='4' && s[i+2]=='4') 
+        {
+            i += 3;
+        }
+        else if (i + 1 < s.size() && s[i]=='1' && s[i+1]=='4') 
+        {
+            i += 2;
+        }
+        else if (s[i] == '1') 
+        {
+            i += 1;
+        }
+        else 
+        {
+            no;
+            return;
+        }
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
-    {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
-    }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    yes;
 }
 
 int32_t main() 

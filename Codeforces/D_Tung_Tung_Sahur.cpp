@@ -35,39 +35,59 @@ int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
 void solve() 
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    string a, b; cin >> a >> b;
+    int n = a.size();
+    int m = b.size();
+    if (m < n || m > 2 * n || a[0] != b[0]) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        no;
+        return;
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    vi aa, bb;
+    int cnt = 1;
+    for (int i = 1; i < n; i++) 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        if (a[i] != a[i-1]) 
+        {
+            aa.push_back(cnt);
+            cnt = 1;
+        }
+        else cnt++;
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    aa.push_back(cnt);
+    cnt = 1;
+    for (int i = 1; i < m; i++) 
+    {
+        if (b[i] != b[i-1]) 
+        {
+            bb.push_back(cnt);
+            cnt = 1;
+        }
+        else cnt++;
+    }
+    bb.push_back(cnt);
+    if (aa.size() != bb.size()) 
+    {
+        no;
+        return;
+    }
+    n = aa.size();
+    for (int i = 0; i < n; i++) 
+    {
+        if (aa[i] > bb[i] || aa[i] * 2 < bb[i]) 
+        {
+            no;
+            return;
+        }
+    }
+    yes;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

@@ -35,39 +35,23 @@ int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
 void solve() 
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    string s;
+	cin >> s;
+	int res = 1;
+	bool ex = false;
+	for (int i = 0; i + 1 < s.size(); i++) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
-    }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
-    {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
-    }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+		res += (s[i] != s[i + 1]);
+		ex |= (s[i] == '0' && s[i + 1] == '1');
+	}
+	cout << res - ex << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

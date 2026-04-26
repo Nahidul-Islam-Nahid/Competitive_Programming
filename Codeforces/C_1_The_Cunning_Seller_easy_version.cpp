@@ -37,37 +37,30 @@ void solve()
 {
     int n;
     cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    vi cost;
+    int c = 3, cnt = 1;
+    frr(i, 0, 21) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        cost.push_back(c);
+        c = 3 * c + cnt;
+        cnt *= 3;
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    int min_cost = 0;
+    int sz = 0;
+    while (n) 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        min_cost += (n % 3) * cost[sz];
+        n /= 3;
+        sz++;
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    cout << min_cost << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

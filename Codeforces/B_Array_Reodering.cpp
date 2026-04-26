@@ -31,43 +31,35 @@ typedef pair<int,int> pii;
 typedef unordered_map<int,int> mi;
 typedef map<int,int> mii;
 
-int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
-
 void solve() 
 {
     int n;
     cin >> n;
-    vi cnt(5, 0);
+    vi a(n);
+    for (int &x : a) cin >> x;
+    sort(all(a), [](int x, int y) 
+    {
+        return x % 2 < y % 2;
+    });
+    int ans = 0;
     fr(n) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        for (int j = i + 1; j < n; ++j) 
+        {
+            if (__gcd(a[i], 2 * a[j]) > 1) 
+            {
+                ans++;
+            }
+        }
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
-    {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
-    }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    cout << ans << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

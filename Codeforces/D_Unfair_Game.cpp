@@ -33,41 +33,68 @@ typedef map<int,int> mii;
 
 int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
+int c_n_k[31][31];
+
+void precompute() 
+{
+    for (int i = 0; i < 30; ++i) 
+    {
+        for (int j = 0; j < 30; ++j) 
+        {
+            if (i < j) 
+            {
+                c_n_k[i][j] = 0;
+            }
+            else if (j == 0) 
+            {
+                c_n_k[i][j] = 1;
+            }
+            else 
+            {
+                c_n_k[i][j] = c_n_k[i - 1][j] + c_n_k[i - 1][j - 1];
+            }
+        }
+    }
+}
+
 void solve() 
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    int n, k;
+    cin >> n >> k;
+    int d = 0;
+    while (n % 2 == 0) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        n /= 2;
+        ++d;
     }
 
-    int taxis = 0;
-    taxis += cnt[4];
+    int ans = 0;
 
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    for (int max_bit = 0; max_bit < d; ++max_bit) 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        for (int cnt_bit = 1; cnt_bit <= max_bit + 1; ++cnt_bit) 
+        {
+            if (max_bit + cnt_bit <= k) 
+            {
+                continue;
+            }
+            ans += c_n_k[max_bit][cnt_bit - 1];
+        }
     }
 
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    if (d + 1 > k) 
+    {
+        ++ans;
+    }
+    cout << ans << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    precompute();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

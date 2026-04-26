@@ -1,97 +1,70 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-// ------------------- Fast IO -------------------
-#define fastio ios::sync_with_stdio(false); cin.tie(nullptr)
+const int MAXN = 1e18;
+const int MINN = -1e18;
 
-// ------------------- Basic Types -------------------
-#define ll long long
-#define ull unsigned long long
-
-// ------------------- Loops -------------------
-#define loop(i,n) for(int i = 0; i < (n); i++)
-#define range(i,l,r) for(int i = (l); i <= (r); i++)
-
-// ------------------- Vector & Array -------------------
-#define all(v) (v).begin(), (v).end()
-#define sz(v) (int)(v).size()
+#define int long long
+#define uint unsigned long long
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define sz(x) (int)(x).size()
 #define pb push_back
-#define printv(v) for(auto &x:v) cout<<x<<" "; cout<<"\n";
+#define eb emplace_back
+#define mp make_pair
 
-// ------------------- Input Macros -------------------
-#define IN(a) cin >> a
-#define IN2(a,b) cin >> a >> b
-#define IN3(a,b,c) cin >> a >> b >> c
+#define fr(n) for(int i = 0; i < n; i++)
+#define rfr(n) for(int i = n-1; i >= 0; i--)
+#define frr(i,a,b) for(int i = a; i < b; i++)
+#define rfrr(i,a,b) for(int i = a - 1; i >= b; i--)
 
-#define INV(v,n) loop(i,n) cin >> v[i]
-#define INV2D(v,n,m) loop(i,n) loop(j,m) cin >> v[i][j]
+#define in(v,n) vector<int> v(n); for(int i=0; i<n; i++) cin>>v[i];
+#define out(v) do { for (auto x : v) cout << x << ' '; cout << '\n'; } while(0)
+#define yes cout<<"YES"<<'\n'
+#define no cout<<"NO"<<'\n'
+#define debug(x) cout << #x << " = " << x << '\n';
+#define fastio ios_base::sync_with_stdio(false); cin.tie(NULL);
 
-// string input
-#define INSTR(s) cin >> s
-#define GETLINE(s) getline(cin,s)
+typedef vector<int> vi;
+typedef vector<pair<int,int>> vip;
+typedef pair<int,int> pii;
+typedef unordered_map<int,int> mi;
+typedef map<int,int> mii;
 
-// ------------------- Predefined Operations -------------------
-#define SUM(v) accumulate(all(v), 0LL)
-#define MAXE(v) *max_element(all(v))
-#define MINE(v) *min_element(all(v))
-#define SORT(v) sort(all(v))
-#define RSORT(v) sort(all(v), greater<ll>())
-#define EXISTS(v,x) (find(all(v),x) != v.end())
+int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
-// ------------------- String Split -------------------
-vector<string> split(const string &s, char delimiter) 
-{
-    vector<string> tokens;
-    string token;
-    stringstream ss(s);
-    while(getline(ss, token, delimiter))
-        if(!token.empty()) tokens.pb(token);
-    return tokens;
-}
-#define SPLIT(str, del) split(str, del)
-
-// ------------------- Print Macros -------------------
-#define print(x) cout << (x) << "\n"
-#define printline(s) cout << s << "\n"
-
-// ------------------- MAP + FREQUENCY MACROS -------------------
-
-// shortcut for map
-#define MAP(key, val) map<key, val>
-#define UMAP(key, val) unordered_map<key, val>
-
-// count frequency of vector elements into map
-#define FREQQ(mp, v) for(auto &x : v) mp[x]++;
-
-void solve()
+void solve() 
 {
     int n, t;
     cin >> n >> t;
-    
-    if (t == 10) {
-        if (n == 1) {
-            cout << -1;
-        } else {
-            cout << 1;
-            for (int i = 1; i < n; i++) {
-                cout << 0;
-            }
+
+    if(t == 10)
+    {
+        if(n == 1)
+        {
+            cout << -1 << endl;
+            return;
         }
-    } else {
-        cout << t;
-        for (int i = 1; i < n; i++) {
+        cout << 1;
+        frr(i,1,n) 
+        {
             cout << 0;
         }
+        cout << endl;
+        return;
     }
+
+    fr(n) 
+    {
+        cout << t;
+    }
+    cout << endl;
 }
 
-
-// ------------------- Main Template -------------------
-int main()
+int32_t main() 
 {
     fastio;
-
-    solve();
-
+    int t = 1;
+    while(t--) solve();
     return 0;
 }

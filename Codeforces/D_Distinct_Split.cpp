@@ -37,37 +37,44 @@ void solve()
 {
     int n;
     cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    string s;
+    cin >> s;
+    vi pref(n), suff(n);
+    vector<int> vis(26,0);
+    int cnt = 0;
+    fr(n)
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        if(!vis[s[i]-'a'])
+        {
+            cnt++;
+            vis[s[i]-'a'] = 1;
+        }
+        pref[i] = cnt;
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    fill(all(vis),0);
+    cnt = 0;
+    rfr(n)
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        if(!vis[s[i]-'a'])
+        {
+            cnt++;
+            vis[s[i]-'a'] = 1;
+        }
+        suff[i] = cnt;
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    int ans = 0;
+    for(int i=0;i<n-1;i++)
+    {
+        ans = max(ans, pref[i] + suff[i+1]);
+    }
+    cout << ans << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }

@@ -37,32 +37,16 @@ void solve()
 {
     int n;
     cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    vi a(n), p(n);
+    fr(n) cin >> a[i] >> p[i];
+    int min_price = 1e18;
+    int total = 0;
+    fr(n)
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        min_price = min(min_price, p[i]);
+        total += a[i] * min_price;
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
-    {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
-    }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    cout << total << '\n';
 }
 
 int32_t main() 

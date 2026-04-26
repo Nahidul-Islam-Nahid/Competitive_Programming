@@ -33,39 +33,28 @@ typedef map<int,int> mii;
 
 int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
-void solve() 
+void solve()
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    int n, k;
+    cin >> n >> k;
+    vi v(n);
+    fr(n)
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        cin >> v[i];
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    int score = v[k - 1];
+    int ans = 0;
+    fr(n)
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        if (v[i] >= score && v[i] > 0)
+        {
+            ans++;
+        }
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    cout << ans << endl;
 }
 
-int32_t main() 
+int32_t main()
 {
     fastio;
     solve();

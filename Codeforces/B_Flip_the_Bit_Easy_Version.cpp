@@ -35,39 +35,41 @@ int gcd(int a, int b){ return b ? gcd(b, a%b) : a; }
 
 void solve() 
 {
-    int n;
-    cin >> n;
-    vi cnt(5, 0);
-    fr(n) 
+    int n, k;
+    cin >> n >> k;
+    vi arr(n+2);
+    for (int i = 1; i <= n; i++) 
     {
-        int x;
-        cin >> x;
-        cnt[x]++;
+        cin >> arr[i];
     }
-
-    int taxis = 0;
-    taxis += cnt[4];
-
-    taxis += cnt[3];
-    cnt[1] = max(0LL, cnt[1] - cnt[3]);
-
-    taxis += cnt[2] / 2;
-    cnt[2] %= 2;
-
-    if (cnt[2]) 
+    int pivot;
+    cin >> pivot;
+ 
+    arr[0] = arr[n+1] = arr[pivot];
+ 
+    int countL = 0, countR = 0;
+    fr(pivot) 
     {
-        taxis++;
-        cnt[1] = max(0LL, cnt[1] - 2);
+        if (arr[i] != arr[i+1]) 
+        {
+            countL++;
+        }
     }
-
-    taxis += (cnt[1] + 3) / 4;
-
-    cout << taxis << endl;
+    for (int i = pivot; i < n+1; i++) 
+    {
+        if (arr[i] != arr[i+1]) 
+        {
+            countR++;
+        }
+    }
+    cout << max(countL, countR) << endl;
 }
 
 int32_t main() 
 {
     fastio;
-    solve();
+    int t = 1;
+    cin >> t;
+    while(t--) solve();
     return 0;
 }
